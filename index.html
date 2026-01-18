@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dine Delight Family Restaurant - Menu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Or for newer versions (v5/v6): -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com">
+
     <style>
       * {
         margin: 0;
@@ -382,46 +386,93 @@
 
       .category-nav {
         display: flex;
-        justify-content: center;
-        gap: 5px;
+        gap: 20px;
         padding: 20px;
         background: white;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: #ccc transparent;
+      }
+
+      .category-nav::-webkit-scrollbar {
+        height: 6px;
+      }
+
+      .category-nav::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      .category-nav::-webkit-scrollbar-thumb {
+        background: #ccc;
+        border-radius: 3px;
+      }
+
+      .category-nav::-webkit-scrollbar-thumb:hover {
+        background: #999;
       }
 
       .category-btn {
-        padding: 10px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding: 10px;
         background: transparent;
         border: none;
-        border-radius: 8px;
+        border-radius: 12px;
         cursor: pointer;
-        font-size: 0.95em;
-        color: #666;
         transition: all 0.3s ease;
-        font-weight: 600;
-        white-space: nowrap;
+        min-width: 80px;
+        flex-shrink: 0;
         position: relative;
       }
 
-      .category-btn:hover {
+      .category-btn-icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        overflow: hidden;
+        background: #f5f5f5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .category-btn-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .category-btn-label {
+        font-size: 0.85em;
+        color: #666;
+        font-weight: 600;
+        text-align: center;
+        white-space: nowrap;
+        transition: color 0.3s ease;
+      }
+
+      .category-btn:hover .category-btn-icon {
+        transform: scale(1.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .category-btn:hover .category-btn-label {
         color: #000;
       }
 
-      .category-btn.active {
-        color: #000;
-        background: #f0f0f0;
+      .category-btn.active .category-btn-icon {
+        box-shadow: 0 4px 12px rgba(56, 142, 60, 0.3);
+        border: 3px solid #388e3c;
       }
 
-      .category-btn.active::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: #000;
-        border-radius: 3px 3px 0 0;
+      .category-btn.active .category-btn-label {
+        color: #388e3c;
+        font-weight: 700;
       }
 
       .search-container {
@@ -945,7 +996,8 @@
       .cart-float {
         position: fixed;
         bottom: 30px;
-        right: 30px;
+        left: 50%;
+        transform: translateX(-50%);
         background: #000;
         color: white;
         padding: 15px 25px;
@@ -959,7 +1011,7 @@
       }
 
       .cart-float:hover {
-        transform: scale(1.05);
+        transform: translateX(-50%) scale(1.05);
         background: #333;
       }
 
@@ -1724,12 +1776,22 @@
         }
 
         .category-nav {
-          padding: 20px;
+          padding: 15px;
+          gap: 15px;
         }
 
         .category-btn {
-          padding: 10px 20px;
-          font-size: 0.9em;
+          min-width: 70px;
+          padding: 8px;
+        }
+
+        .category-btn-icon {
+          width: 60px;
+          height: 60px;
+        }
+
+        .category-btn-label {
+          font-size: 0.75em;
         }
 
         .menu-content {
@@ -1775,9 +1837,14 @@
 
         .cart-float {
           bottom: 20px;
-          right: 28%;
+          left: 50%;
+          transform: translateX(-50%);
           padding: 12px 20px;
-          font-size: 1em;
+          font-size: 0.9em;
+        }
+        
+        .cart-float:hover {
+          transform: translateX(-50%) scale(1.05);
         }
 
         .footer {
@@ -1899,15 +1966,11 @@
           },
           {
             "label": "Veg",
-            "price": "₹90"
-          },
-          {
-            "label": "Prawns",
-            "price": "₹150"
+            "price": "₹100"
           }
         ],
         "tags": [],
-        "image": ""
+        "image": "https://www.cookingcarnival.com/wp-content/uploads/2023/09/Hot-and-sour-soup-4.jpg"
       },
       {
         "id": "soup_manchow",
@@ -1920,11 +1983,7 @@
           },
           {
             "label": "Veg",
-            "price": "₹90"
-          },
-          {
-            "label": "Prawns",
-            "price": "₹150"
+            "price": "₹100"
           }
         ],
         "tags": [],
@@ -1941,11 +2000,7 @@
           },
           {
             "label": "Veg",
-            "price": "₹90"
-          },
-          {
-            "label": "Prawns",
-            "price": "₹150"
+            "price": "₹100"
           }
         ],
         "tags": [],
@@ -1962,11 +2017,7 @@
           },
           {
             "label": "Veg",
-            "price": "₹90"
-          },
-          {
-            "label": "Prawns",
-            "price": "₹150"
+            "price": "₹100"
           }
         ],
         "tags": [],
@@ -1983,11 +2034,7 @@
           },
           {
             "label": "Veg",
-            "price": "₹90"
-          },
-          {
-            "label": "Prawns",
-            "price": "₹150"
+            "price": "₹100"
           }
         ],
         "tags": [],
@@ -2004,11 +2051,7 @@
           },
           {
             "label": "Veg",
-            "price": "₹90"
-          },
-          {
-            "label": "Prawns",
-            "price": "₹150"
+            "price": "₹100"
           }
         ],
         "tags": [],
@@ -2017,48 +2060,6 @@
       {
         "id": "soup_lung_fung",
         "name": "Lung Fung",
-        "price": 110,
-        "quantityOptions": [
-          {
-            "label": "Chicken",
-            "price": "₹120"
-          },
-          {
-            "label": "Veg",
-            "price": "₹90"
-          },
-          {
-            "label": "Prawns",
-            "price": "₹150"
-          },
-          {
-            "label": "Mutton",
-            "price": "₹160"
-          }
-        ],
-        "tags": [],
-        "image": ""
-      },
-      {
-        "id": "soup_paya",
-        "name": "Paya",
-        "price": 150,
-        "quantityOptions": [
-          {
-            "label": "Chicken",
-            "price": "₹150"
-          },
-          {
-            "label": "Veg",
-            "price": "₹140"
-          }
-        ],
-        "tags": [],
-        "image": ""
-      },
-      {
-        "id": "soup_lemon_coriander",
-        "name": "Lemon Coriander",
         "price": 130,
         "quantityOptions": [
           {
@@ -2067,7 +2068,24 @@
           },
           {
             "label": "Veg",
-            "price": "₹120"
+            "price": "₹110"
+          }
+        ],
+        "tags": [],
+        "image": ""
+      },
+      {
+        "id": "soup_lemon_coriander",
+        "name": "Lemon Coriander",
+        "price": 160,
+        "quantityOptions": [
+          {
+            "label": "Chicken",
+            "price": "₹160"
+          },
+          {
+            "label": "Veg",
+            "price": "₹150"
           }
         ],
         "tags": [],
@@ -2076,7 +2094,17 @@
       {
         "id": "soup_green_heaven",
         "name": "Green Heaven",
-        "price": 210,
+        "price": 140,
+        "quantityOptions": [
+          {
+            "label": "Chicken",
+            "price": "₹140"
+          },
+          {
+            "label": "Veg",
+            "price": "₹130"
+          }
+        ],
         "tags": [],
         "image": ""
       }
@@ -2117,9 +2145,26 @@
         "tags": [],
         "image": ""
       },
+      // {
+      //   "id": "ct_red_oil_fry_tandoori",
+      //   "name": "Red Oil Fry Tandoori",
+      //   "price": 180,
+      //   "quantityOptions": [
+      //     {
+      //       "label": "Half",
+      //       "price": "₹180"
+      //     },
+      //     {
+      //       "label": "Full",
+      //       "price": "₹350"
+      //     }
+      //   ],
+      //   "tags": [],
+      //   "image": ""
+      // },
       {
-        "id": "ct_red_oil_fry_tandoori",
-        "name": "Red Oil Fry Tandoori",
+        "id": "ct_double_masala",
+        "name": "Double Masala Tandoori",
         "price": 180,
         "quantityOptions": [
           {
@@ -2129,23 +2174,6 @@
           {
             "label": "Full",
             "price": "₹350"
-          }
-        ],
-        "tags": [],
-        "image": ""
-      },
-      {
-        "id": "ct_double_masala",
-        "name": "Double Masala Tandoori",
-        "price": 190,
-        "quantityOptions": [
-          {
-            "label": "Half",
-            "price": "₹190"
-          },
-          {
-            "label": "Full",
-            "price": "₹370"
           }
         ]
       },
@@ -2223,6 +2251,21 @@
             "price": "₹510"
           }
         ]
+      }, 
+      {
+        "id": "ct_dynamite_tandori",
+        "name": "Dynamite Tandoori",
+        "price": 270,
+        "quantityOptions": [
+          {
+            "label": "Half",
+            "price": "₹270"
+          },
+          {
+            "label": "Full",
+            "price": "₹450"
+          }
+        ]
       }
     ]
   },
@@ -2230,9 +2273,24 @@
     "title": "Special Kabab",
     "note": "Extra cheese ₹30",
     "items": [
+      // {
+      //   "id": "sk_red",
+      //   "name": "Red Kabab",
+      //   "price": 180,
+      //   "quantityOptions": [
+      //     {
+      //       "label": "Half",
+      //       "price": "₹180"
+      //     },
+      //     {
+      //       "label": "Full",
+      //       "price": "₹350"
+      //     }
+      //   ]
+      // },
       {
-        "id": "sk_red",
-        "name": "Red Kabab",
+        "id": "sk_oil_fry",
+        "name": "Oil Fry Kabab",
         "price": 180,
         "quantityOptions": [
           {
@@ -2242,68 +2300,12 @@
           {
             "label": "Full",
             "price": "₹350"
-          }
-        ]
-      },
-      {
-        "id": "sk_oil_fry",
-        "name": "Oil Fry Kabab",
-        "price": 190,
-        "quantityOptions": [
-          {
-            "label": "Half",
-            "price": "₹190"
-          },
-          {
-            "label": "Full",
-            "price": "₹370"
           }
         ]
       },
       {
         "id": "sk_banjara",
         "name": "Banjara Kabab",
-        "price": 180,
-        "quantityOptions": [
-          {
-            "label": "Half",
-            "price": "₹180"
-          },
-          {
-            "label": "Full",
-            "price": "₹350"
-          }
-        ]
-      },
-      {
-        "id": "sk_sonali",
-        "name": "Sonali Kabab",
-        "price": 480,
-        "quantityOptions": [
-          {
-            "label": "Full",
-            "price": "₹480"
-          }
-        ]
-      },
-      {
-        "id": "sk_pahadi",
-        "name": "Pahadi Kabab",
-        "price": 180,
-        "quantityOptions": [
-          {
-            "label": "Half",
-            "price": "₹180"
-          },
-          {
-            "label": "Full",
-            "price": "₹350"
-          }
-        ]
-      },
-      {
-        "id": "sk_sholay_boneless",
-        "name": "Sholay Kabab (Boneless)",
         "price": 190,
         "quantityOptions": [
           {
@@ -2313,6 +2315,51 @@
           {
             "label": "Full",
             "price": "₹370"
+          }
+        ]
+      },
+      {
+        "id": "sk_sonali",
+        "name": "Sonali Kabab",
+        "price": 180,
+        "quantityOptions": [
+        {
+            "label": "Half",
+            "price": "₹180"
+          },
+          {
+            "label": "Full",
+            "price": "₹350"
+          }
+        ]
+      },
+      {
+        "id": "sk_pahadi",
+        "name": "Pahadi Kabab",
+        "price": 190,
+        "quantityOptions": [
+          {
+            "label": "Half",
+            "price": "₹190"
+          },
+          {
+            "label": "Full",
+            "price": "₹370"
+          }
+        ]
+      },
+      {
+        "id": "sk_sholay_boneless",
+        "name": "Sholay Kabab (Boneless)",
+        "price": 180,
+        "quantityOptions": [
+          {
+            "label": "Half",
+            "price": "₹180"
+          },
+          {
+            "label": "Full",
+            "price": "₹350"
           }
         ]
       },
@@ -2327,16 +2374,31 @@
           },
           {
             "label": "Full",
-            "price": "₹410"
+            "price": "₹390"
           }
         ]
       },
+      // {
+      //   "id": "sk_dry_fry",
+      //   "name": "Dry Fry Kabab",
+      //   "price": 270,
+      //   "quantityOptions": [
+      //     {
+      //       "label": "Half",
+      //       "price": "₹270"
+      //     },
+      //     {
+      //       "label": "Full",
+      //       "price": "₹550"
+      //     }
+      //   ]
+      // },
       {
-        "id": "sk_dry_fry",
-        "name": "Dry Fry Kabab",
+        "id": "sk_dil_khush",
+        "name": "Dil Khush Kabab (SPL)",
         "price": 270,
         "quantityOptions": [
-          {
+        {
             "label": "Half",
             "price": "₹270"
           },
@@ -2347,32 +2409,14 @@
         ]
       },
       {
-        "id": "sk_dil_khush",
-        "name": "Dil Khush Kabab (SPL)",
-        "price": 480,
-        "quantityOptions": [
-          {
-            "label": "Full",
-            "price": "₹480"
-          }
-        ]
-      },
-      {
         "id": "sk_rozali",
-        "name": "Rozali Kabab (SPL)",
-        "price": 480,
+        "name": "Dynamite Kabab (SPL)",
+        "price": 270,
         "quantityOptions": [
-          {
-            "label": "Full",
-            "price": "₹480"
-          }
-        ]
-      },
-      {
-        "id": "sk_turkish",
-        "name": "Turkish Kabab (SPL)",
-        "price": 450,
-        "quantityOptions": [
+        {
+            "label": "Half",
+            "price": "₹270"
+          },
           {
             "label": "Full",
             "price": "₹450"
@@ -2380,10 +2424,25 @@
         ]
       },
       {
+        "id": "sk_turkish",
+        "name": "Seekh Kabab",
+        "price": 300,
+        "quantityOptions": [
+          {
+            "label": "Full",
+            "price": "₹300"
+          }
+        ]
+      },
+      {
         "id": "sk_peri_peri",
         "name": "Peri Peri Kabab (SPL)",
-        "price": 450,
+        "price": 250,
         "quantityOptions": [
+        {
+            "label": "Half",
+            "price": "₹250"
+          },
           {
             "label": "Full",
             "price": "₹450"
@@ -2398,42 +2457,38 @@
       {
         "id": "chs_taliman",
         "name": "Taliman Chicken (SPL)",
-        "price": 240
+        "price": 260
       },
       {
         "id": "chs_bomdi",
         "name": "Bomdi Chicken (SPL)",
-        "price": 230
+        "price": 260
       },
       {
         "id": "chs_chicken99",
         "name": "Chicken 99 (SPL)",
-        "price": 240,
+        "price": 260,
         "quantityOptions": [
           {
             "label": "Chicken",
-            "price": "₹240"
-          },
-          {
-            "label": "Veg",
-            "price": "₹90"
+            "price": "₹260"
           }
         ]
       },
       {
         "id": "chs_crispy_honey",
         "name": "Crispy Honey Chicken",
-        "price": 240
+        "price": 260
       },
       {
         "id": "chs_majestic",
         "name": "Chicken Majestic",
-        "price": 230
+        "price": 250
       },
       {
         "id": "chs_paper",
         "name": "Paper Chicken",
-        "price": 230
+        "price": 250
       },
       {
         "id": "chs_fry_prawns",
@@ -2462,28 +2517,28 @@
       },
       {
         "id": "chs_fish_crispy",
-        "name": "Fish Crispy",
-        "price": 310
+        "name": "Fish Crispy (KFC Style)",
+        "price": 320
       },
       {
         "id": "chs_dynamite",
         "name": "Dynamite Prawns / Chicken",
-        "price": 240,
+        "price": 260,
         "quantityOptions": [
           {
             "label": "Chicken",
-            "price": "₹240"
+            "price": "₹260"
           },
           {
             "label": "Prawns",
-            "price": "₹310"
+            "price": "₹320"
           }
         ]
       },
       {
         "id": "chs_ginger_spl",
         "name": "Ginger Chicken (SPL)",
-        "price": 360
+        "price": 260
       }
     ]
   },
@@ -2493,12 +2548,12 @@
       {
         "id": "ins_mutton_ghee_roast",
         "name": "Mutton Ghee Roast",
-        "price": 480
+        "price": 550
       },
       {
         "id": "ins_prawns_fry",
         "name": "Prawns Fry",
-        "price": 330
+        "price": 390
       },
       {
         "id": "ins_fish_fry",
@@ -2508,7 +2563,7 @@
       {
         "id": "ins_bima_hara_mutton_fry",
         "name": "Bima Hara Mutton Fry",
-        "price": 480
+        "price": 550
       }
     ]
   },
@@ -2518,15 +2573,15 @@
     "items": [
       {
         "id": "sd_lollypop_oil_fry",
-        "name": "Lollypop Oil Fry",
+        "name": "ChickenLollypop Oil Fry",
         "price": 100,
         "quantityOptions": [
           {
-            "label": "Chicken Half",
+            "label": "Half",
             "price": "₹100"
           },
           {
-            "label": "Chicken Full",
+            "label": "Full",
             "price": "₹200"
           }
         ]
@@ -2534,251 +2589,223 @@
       {
         "id": "sd_chilli_gravy",
         "name": "Chilli Gravy",
-        "price": 130,
+        "price": 230,
         "quantityOptions": [
           {
-            "label": "Chicken Half",
-            "price": "₹130"
-          },
-          {
-            "label": "Chicken Full",
-            "price": "₹220"
+            "label": "Chicken",
+            "price": "₹230"
           },
           {
             "label": "Veg",
-            "price": "₹190"
+            "price": "₹220"
           },
           {
-            "label": "Paneer",
-            "price": "₹210"
+            "label": "Mutton Half",
+            "price": "₹440"
           },
           {
-            "label": "Mutton Half/Full",
-            "price": "₹430/₹790"
+            "label": "Mutton Full",
+            "price": "₹790"
           },
           {
             "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "sd_chilli_masala",
         "name": "Chilli Masala",
-        "price": 130,
+        "price": 230,
         "quantityOptions": [
-          {
-            "label": "Chicken Half",
-            "price": "₹130"
-          },
-          {
-            "label": "Chicken Full",
-            "price": "₹220"
+        {
+            "label": "Chicken",
+            "price": "₹230"
           },
           {
             "label": "Veg",
-            "price": "₹190"
+            "price": "₹220"
           },
           {
-            "label": "Paneer",
-            "price": "₹210"
+            "label": "Mutton Half",
+            "price": "₹440"
           },
           {
-            "label": "Mutton Half/Full",
-            "price": "₹430/₹790"
+            "label": "Mutton Full",
+            "price": "₹790"
           },
           {
             "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "sd_chilli_dry",
         "name": "Chilli Dry",
-        "price": 130,
+        "price": 230,
         "quantityOptions": [
-          {
-            "label": "Chicken Half",
-            "price": "₹130"
-          },
-          {
-            "label": "Chicken Full",
-            "price": "₹220"
+        {
+            "label": "Chicken",
+            "price": "₹230"
           },
           {
             "label": "Veg",
-            "price": "₹190"
+            "price": "₹220"
           },
           {
-            "label": "Paneer",
-            "price": "₹210"
+            "label": "Mutton Half",
+            "price": "₹440"
           },
           {
-            "label": "Mutton Half/Full",
-            "price": "₹430/₹790"
+            "label": "Mutton Full",
+            "price": "₹790"
           },
           {
             "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "sd_manchurian",
         "name": "Manchurian (Dry/Gravy)",
-        "price": 130,
+        "price": 230,
         "quantityOptions": [
-          {
-            "label": "Chicken Half",
-            "price": "₹130"
-          },
-          {
-            "label": "Chicken Full",
-            "price": "₹220"
+        {
+            "label": "Chicken",
+            "price": "₹230"
           },
           {
             "label": "Veg",
-            "price": "₹190"
+            "price": "₹220"
           },
           {
-            "label": "Paneer",
-            "price": "₹210"
+            "label": "Mutton Half",
+            "price": "₹440"
           },
           {
-            "label": "Mutton Half/Full",
-            "price": "₹430/₹790"
+            "label": "Mutton Full",
+            "price": "₹790"
           },
           {
             "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "sd_singapore_chilli",
         "name": "Singapore Chilli (Dry/Gravy)",
-        "price": 130,
+        "price": 230,
         "quantityOptions": [
-          {
-            "label": "Chicken Half",
-            "price": "₹130"
-          },
-          {
-            "label": "Chicken Full",
-            "price": "₹220"
+        {
+            "label": "Chicken",
+            "price": "₹230"
           },
           {
             "label": "Veg",
-            "price": "₹190"
+            "price": "₹220"
           },
           {
-            "label": "Paneer",
-            "price": "₹210"
+            "label": "Mutton Half",
+            "price": "₹440"
           },
           {
-            "label": "Mutton Half/Full",
-            "price": "₹430/₹790"
+            "label": "Mutton Full",
+            "price": "₹790"
           },
           {
             "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "sd_schezwan",
         "name": "Schezwan Chilli (Dry/Gravy)",
-        "price": 130,
+        "price": 230,
         "quantityOptions": [
-          {
-            "label": "Chicken Half",
-            "price": "₹130"
-          },
-          {
-            "label": "Chicken Full",
-            "price": "₹220"
+        {
+            "label": "Chicken",
+            "price": "₹230"
           },
           {
             "label": "Veg",
-            "price": "₹190"
+            "price": "₹220"
           },
           {
-            "label": "Paneer",
-            "price": "₹210"
+            "label": "Mutton Half",
+            "price": "₹440"
           },
           {
-            "label": "Mutton Half/Full",
-            "price": "₹430/₹790"
+            "label": "Mutton Full",
+            "price": "₹790"
           },
           {
             "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "sd_lollypop_gravy",
         "name": "Lollypop Gravy (Dry/Gravy)",
-        "price": 140,
+        "price": 160,
         "quantityOptions": [
           {
             "label": "Chicken Half",
-            "price": "₹140"
+            "price": "₹160"
           },
           {
             "label": "Chicken Full",
-            "price": "₹230"
+            "price": "₹280"
           },
           {
-            "label": "Prawns",
-            "price": "₹450"
+            "label": "Veg",
+            "price": "₹220"
           }
         ]
       },
       {
         "id": "sd_lollypop_masala",
         "name": "Lollypop Masala",
-        "price": 0,
+        "price": 150,
         "quantityOptions": [
           {
             "label": "Chicken Half",
-            "price": "₹140"
+            "price": "₹150"
           },
           {
             "label": "Chicken Full",
-            "price": "₹230"
+            "price": "₹250"
           },
           {
-            "label": "Paneer",
-            "price": "₹190"
+            "label": "Veg",
+            "price": "₹220"
           }
         ]
       },
       {
         "id": "sd_dhaba_chilli",
         "name": "Dhaba Chilli",
-        "price": 220,
+        "price": 240,
         "quantityOptions": [
           {
             "label": "Chicken Half",
-            "price": "₹220"
+            "price": "₹240"
           },
           {
             "label": "Chicken Full",
-            "price": "₹360"
+            "price": "₹380"
           },
           {
             "label": "Veg",
-            "price": "₹190"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹190"
+            "price": "₹220"
           },
           {
             "label": "Mutton Half",
-            "price": "₹430"
+            "price": "₹440"
           },
           {
             "label": "Mutton Full",
@@ -2786,34 +2813,26 @@
           },
           {
             "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "sd_garlic_chilli",
         "name": "Garlic Chilli (Dry/Gravy)",
-        "price": 220,
+        "price": 260,
         "quantityOptions": [
           {
-            "label": "Chicken Half",
-            "price": "₹220"
-          },
-          {
-            "label": "Chicken Full",
-            "price": "₹360"
+            "label": "Chicken",
+            "price": "₹260"
           },
           {
             "label": "Veg",
-            "price": "₹190"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹190"
+            "price": "₹220"
           },
           {
             "label": "Mutton Half",
-            "price": "₹430"
+            "price": "₹440"
           },
           {
             "label": "Mutton Full",
@@ -2821,34 +2840,26 @@
           },
           {
             "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "sd_red_chilli",
         "name": "Red Chilli",
-        "price": 220,
+        "price": 260,
         "quantityOptions": [
-          {
-            "label": "Chicken Half",
-            "price": "₹220"
-          },
-          {
-            "label": "Chicken Full",
-            "price": "₹360"
+        {
+            "label": "Chicken",
+            "price": "₹260"
           },
           {
             "label": "Veg",
-            "price": "₹190"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹190"
+            "price": "₹220"
           },
           {
             "label": "Mutton Half",
-            "price": "₹430"
+            "price": "₹440"
           },
           {
             "label": "Mutton Full",
@@ -2856,34 +2867,26 @@
           },
           {
             "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "sd_dragon",
         "name": "Dragon",
-        "price": 220,
+        "price": 260,
         "quantityOptions": [
-          {
-            "label": "Chicken Half",
-            "price": "₹220"
-          },
-          {
-            "label": "Chicken Full",
-            "price": "₹360"
+        {
+            "label": "Chicken",
+            "price": "₹260"
           },
           {
             "label": "Veg",
-            "price": "₹190"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹190"
+            "price": "₹220"
           },
           {
             "label": "Mutton Half",
-            "price": "₹430"
+            "price": "₹440"
           },
           {
             "label": "Mutton Full",
@@ -2891,34 +2894,26 @@
           },
           {
             "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "sd_65",
         "name": "65",
-        "price": 220,
+        "price": 260,
         "quantityOptions": [
-          {
-            "label": "Chicken Half",
-            "price": "₹220"
-          },
-          {
-            "label": "Chicken Full",
-            "price": "₹360"
+        {
+            "label": "Chicken",
+            "price": "₹260"
           },
           {
             "label": "Veg",
-            "price": "₹190"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹190"
+            "price": "₹220"
           },
           {
             "label": "Mutton Half",
-            "price": "₹430"
+            "price": "₹440"
           },
           {
             "label": "Mutton Full",
@@ -2926,34 +2921,26 @@
           },
           {
             "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "sd_winchester",
         "name": "Winchester",
-        "price": 220,
+        "price": 260,
         "quantityOptions": [
-          {
-            "label": "Chicken Half",
-            "price": "₹220"
-          },
-          {
-            "label": "Chicken Full",
-            "price": "₹360"
+        {
+            "label": "Chicken",
+            "price": "₹260"
           },
           {
             "label": "Veg",
-            "price": "₹190"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹190"
+            "price": "₹220"
           },
           {
             "label": "Mutton Half",
-            "price": "₹430"
+            "price": "₹440"
           },
           {
             "label": "Mutton Full",
@@ -2961,34 +2948,26 @@
           },
           {
             "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "sd_lemon_chilli",
         "name": "Lemon Chilli",
-        "price": 220,
+        "price": 249,
         "quantityOptions": [
-          {
-            "label": "Chicken Half",
-            "price": "₹220"
-          },
-          {
-            "label": "Chicken Full",
-            "price": "₹360"
+        {
+            "label": "Chicken",
+            "price": "₹249"
           },
           {
             "label": "Veg",
-            "price": "₹190"
-          },
-          {
-            "label": "Paneer",
             "price": "₹230"
           },
           {
             "label": "Mutton Half",
-            "price": "₹430"
+            "price": "₹440"
           },
           {
             "label": "Mutton Full",
@@ -2996,34 +2975,26 @@
           },
           {
             "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "sd_hong_kong",
         "name": "Hong-Kong Chilli (Dry/Gravy)",
-        "price": 220,
+        "price": 260,
         "quantityOptions": [
-          {
-            "label": "Chicken Half",
-            "price": "₹220"
-          },
-          {
-            "label": "Chicken Full",
-            "price": "₹360"
+        {
+            "label": "Chicken",
+            "price": "₹260"
           },
           {
             "label": "Veg",
-            "price": "₹230"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹250"
+            "price": "₹240"
           },
           {
             "label": "Mutton Half",
-            "price": "₹430"
+            "price": "₹440"
           },
           {
             "label": "Mutton Full",
@@ -3031,34 +3002,26 @@
           },
           {
             "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "sd_cheese_chilli",
         "name": "Cheese Chilli",
-        "price": 250,
+        "price": 330,
         "quantityOptions": [
-          {
-            "label": "Chicken Half",
-            "price": "₹250"
-          },
-          {
-            "label": "Chicken Full",
-            "price": "₹370"
+        {
+            "label": "Chicken",
+            "price": "₹330"
           },
           {
             "label": "Veg",
-            "price": "₹230"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹230"
+            "price": "₹260"
           },
           {
             "label": "Mutton Half",
-            "price": "₹430"
+            "price": "₹440"
           },
           {
             "label": "Mutton Full",
@@ -3066,75 +3029,34 @@
           },
           {
             "label": "Prawns",
-            "price": "₹450"
-          }
-        ]
-      },
-      {
-        "id": "sd_crispy",
-        "name": "Crispy",
-        "price": 220,
-        "quantityOptions": [
-          {
-            "label": "Chicken Half",
-            "price": "₹220"
-          },
-          {
-            "label": "Chicken Full",
-            "price": "₹360"
-          },
-          {
-            "label": "Veg",
-            "price": "₹230"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹230"
-          },
-          {
-            "label": "Mutton Half",
-            "price": "₹430"
-          },
-          {
-            "label": "Mutton Full",
-            "price": "₹790"
-          },
-          {},
-          {
-            "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "sd_honey_chilli",
         "name": "Honey Chilli",
-        "price": 250,
+        "price": 280,
         "quantityOptions": [
-          {
-            "label": "Chicken Half",
-            "price": "₹250"
-          },
-          {
-            "label": "Chicken Full",
-            "price": "₹370"
+        {
+            "label": "Chicken",
+            "price": "₹280"
           },
           {
             "label": "Veg",
-            "price": "₹230"
+            "price": "₹260"
           },
           {
             "label": "Mutton Half",
-            "price": "₹430"
+            "price": "₹440"
           },
           {
             "label": "Mutton Full",
             "price": "₹790"
           },
-          {},
           {
             "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       }
@@ -3145,62 +3067,54 @@
     "items": [
       {
         "id": "mk_butter",
-        "name": "Butter",
-        "price": 240,
+        "name": "Butter Chicken",
+        "price": 260,
         "quantityOptions": [
           {
             "label": "Chicken Boneless Half",
-            "price": "₹240"
+            "price": "₹260"
           },
           {
             "label": "Chicken Boneless Full",
-            "price": "₹370"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "mk_afgani",
         "name": "Afgani",
-        "price": 240,
+        "price": 260,
         "quantityOptions": [
           {
             "label": "Chicken Boneless Half",
-            "price": "₹240"
+            "price": "₹260"
           },
           {
             "label": "Chicken Boneless Full",
-            "price": "₹370"
+            "price": "₹390"
+          }, 
+          {
+            "label": "Veg",
+            "price": "₹220"
           }
         ]
       },
       {
         "id": "mk_nizami",
         "name": "Nizami",
-        "price": 220,
+        "price": 260,
         "quantityOptions": [
           {
-            "label": "Chicken Bone Half",
-            "price": "₹220"
-          },
-          {
-            "label": "Chicken Bone Full",
-            "price": "₹360"
-          },
-          {
             "label": "Chicken Boneless Half",
-            "price": "₹240"
+            "price": "₹260"
           },
           {
             "label": "Chicken Boneless Full",
-            "price": "₹370"
+            "price": "₹390"
           },
           {
             "label": "Veg",
-            "price": "₹180"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹200"
+            "price": "₹220"
           },
           {
             "label": "Mutton Half",
@@ -3212,38 +3126,34 @@
           },
           {
             "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "mk_jaipuri",
         "name": "Jaipuri",
-        "price": 220,
+        "price": 240,
         "quantityOptions": [
           {
             "label": "Chicken Bone Half",
-            "price": "₹220"
-          },
-          {
-            "label": "Chicken Bone Full",
-            "price": "₹360"
-          },
-          {
-            "label": "Chicken Boneless Half",
             "price": "₹240"
           },
           {
+            "label": "Chicken Bone Full",
+            "price": "₹380"
+          },
+          {
+            "label": "Chicken Boneless Half",
+            "price": "₹260"
+          },
+          {
             "label": "Chicken Boneless Full",
-            "price": "₹370"
+            "price": "₹390"
           },
           {
             "label": "Veg",
-            "price": "₹180"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹200"
+            "price": "₹220"
           },
           {
             "label": "Mutton Half",
@@ -3255,85 +3165,61 @@
           },
           {
             "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "mk_chicken_changezi",
         "name": "Chicken Changezi",
-        "price": 249,
+        "price": 270,
         "quantityOptions": [
           {
             "label": "Chicken Bone Half",
-            "price": "₹249"
+            "price": "₹270"
           },
           {
             "label": "Chicken Bone Full",
-            "price": "₹400"
+            "price": "₹420"
           },
           {
             "label": "Chicken Boneless Half",
-            "price": "₹269"
+            "price": "₹260"
           },
           {
             "label": "Chicken Boneless Full",
-            "price": "₹420"
-          },
-          {
-            "label": "Veg",
-            "price": "₹180"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹200"
-          },
-          {
-            "label": "Mutton Half",
-            "price": "₹420"
-          },
-          {
-            "label": "Mutton Full",
-            "price": "₹790"
-          },
-          {
-            "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "mk_nawabi",
         "name": "Nawabi",
-        "price": 220,
+        "price": 240,
         "quantityOptions": [
           {
             "label": "Chicken Bone Half",
-            "price": "₹220"
-          },
-          {
-            "label": "Chicken Bone Full",
-            "price": "₹360"
-          },
-          {
-            "label": "Chicken Boneless Half",
             "price": "₹240"
           },
           {
+            "label": "Chicken Bone Full",
+            "price": "₹380"
+          },
+          {
+            "label": "Chicken Boneless Half",
+            "price": "₹260"
+          },
+          {
             "label": "Chicken Boneless Full",
-            "price": "₹370"
+            "price": "₹390"
           },
           {
             "label": "Veg",
-            "price": "₹180"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹200"
+            "price": "₹220"
           },
           {
             "label": "Mutton Half",
-            "price": "₹420"
+            "price": "₹440"
           },
           {
             "label": "Mutton Full",
@@ -3341,18 +3227,18 @@
           },
           {
             "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "mk_kolhapuri",
         "name": "Kolhapuri",
-        "price": 220,
+        "price": 240,
         "quantityOptions": [
           {
             "label": "Chicken Bone Half",
-            "price": "₹220"
+            "price": "₹240"
           },
           {
             "label": "Chicken Bone Full",
@@ -3360,23 +3246,19 @@
           },
           {
             "label": "Chicken Boneless Half",
-            "price": "₹240"
+            "price": "₹260"
           },
           {
             "label": "Chicken Boneless Full",
-            "price": "₹370"
+            "price": "₹390"
           },
           {
             "label": "Veg",
-            "price": "₹180"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹200"
+            "price": "₹220"
           },
           {
             "label": "Mutton Half",
-            "price": "₹420"
+            "price": "₹440"
           },
           {
             "label": "Mutton Full",
@@ -3384,18 +3266,18 @@
           },
           {
             "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "mk_dabba",
         "name": "Dabba",
-        "price": 220,
+        "price": 240,
         "quantityOptions": [
           {
             "label": "Chicken Bone Half",
-            "price": "₹220"
+            "price": "₹240"
           },
           {
             "label": "Chicken Bone Full",
@@ -3403,23 +3285,19 @@
           },
           {
             "label": "Chicken Boneless Half",
-            "price": "₹240"
+            "price": "₹260"
           },
           {
             "label": "Chicken Boneless Full",
-            "price": "₹370"
+            "price": "₹390"
           },
           {
             "label": "Veg",
-            "price": "₹180"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹200"
+            "price": "₹220"
           },
           {
             "label": "Mutton Half",
-            "price": "₹420"
+            "price": "₹440"
           },
           {
             "label": "Mutton Full",
@@ -3427,18 +3305,18 @@
           },
           {
             "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "mk_dopyaza",
         "name": "Dopyaza",
-        "price": 220,
+        "price": 240,
         "quantityOptions": [
           {
             "label": "Chicken Bone Half",
-            "price": "₹220"
+            "price": "₹240"
           },
           {
             "label": "Chicken Bone Full",
@@ -3446,23 +3324,19 @@
           },
           {
             "label": "Chicken Boneless Half",
-            "price": "₹240"
+            "price": "₹260"
           },
           {
             "label": "Chicken Boneless Full",
-            "price": "₹370"
+            "price": "₹390"
           },
           {
             "label": "Veg",
-            "price": "₹180"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹200"
+            "price": "₹220"
           },
           {
             "label": "Mutton Half",
-            "price": "₹420"
+            "price": "₹440"
           },
           {
             "label": "Mutton Full",
@@ -3470,22 +3344,18 @@
           },
           {
             "label": "Prawns",
-            "price": "₹450"
-          },
-          {
-            "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "mk_hydrabadi",
         "name": "Hydrabadi",
-        "price": 220,
+        "price": 240,
         "quantityOptions": [
           {
             "label": "Chicken Bone Half",
-            "price": "₹220"
+            "price": "₹240"
           },
           {
             "label": "Chicken Bone Full",
@@ -3493,23 +3363,19 @@
           },
           {
             "label": "Chicken Boneless Half",
-            "price": "₹240"
+            "price": "₹260"
           },
           {
             "label": "Chicken Boneless Full",
-            "price": "₹370"
+            "price": "₹390"
           },
           {
             "label": "Veg",
-            "price": "₹180"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹200"
+            "price": "₹220"
           },
           {
             "label": "Mutton Half",
-            "price": "₹420"
+            "price": "₹440"
           },
           {
             "label": "Mutton Full",
@@ -3517,18 +3383,18 @@
           },
           {
             "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "mk_rashida",
         "name": "Rashida",
-        "price": 220,
+        "price": 240,
         "quantityOptions": [
           {
             "label": "Chicken Bone Half",
-            "price": "₹220"
+            "price": "₹240"
           },
           {
             "label": "Chicken Bone Full",
@@ -3536,23 +3402,19 @@
           },
           {
             "label": "Chicken Boneless Half",
-            "price": "₹240"
+            "price": "₹260"
           },
           {
             "label": "Chicken Boneless Full",
-            "price": "₹370"
+            "price": "₹390"
           },
           {
             "label": "Veg",
-            "price": "₹180"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹200"
+            "price": "₹220"
           },
           {
             "label": "Mutton Half",
-            "price": "₹420"
+            "price": "₹440"
           },
           {
             "label": "Mutton Full",
@@ -3560,22 +3422,18 @@
           },
           {
             "label": "Prawns",
-            "price": "₹450"
-          },
-          {
-            "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "mk_patyala",
         "name": "Patyala",
-        "price": 220,
+       "price": 240,
         "quantityOptions": [
           {
             "label": "Chicken Bone Half",
-            "price": "₹220"
+            "price": "₹240"
           },
           {
             "label": "Chicken Bone Full",
@@ -3583,23 +3441,19 @@
           },
           {
             "label": "Chicken Boneless Half",
-            "price": "₹240"
+            "price": "₹260"
           },
           {
             "label": "Chicken Boneless Full",
-            "price": "₹370"
+            "price": "₹390"
           },
           {
             "label": "Veg",
-            "price": "₹180"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹200"
+            "price": "₹220"
           },
           {
             "label": "Mutton Half",
-            "price": "₹420"
+            "price": "₹440"
           },
           {
             "label": "Mutton Full",
@@ -3607,18 +3461,18 @@
           },
           {
             "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "mk_lapeta",
         "name": "Lapeta",
-        "price": 220,
+       "price": 240,
         "quantityOptions": [
           {
             "label": "Chicken Bone Half",
-            "price": "₹220"
+            "price": "₹240"
           },
           {
             "label": "Chicken Bone Full",
@@ -3626,23 +3480,19 @@
           },
           {
             "label": "Chicken Boneless Half",
-            "price": "₹240"
+            "price": "₹260"
           },
           {
             "label": "Chicken Boneless Full",
-            "price": "₹370"
+            "price": "₹390"
           },
           {
             "label": "Veg",
-            "price": "₹180"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹200"
+            "price": "₹220"
           },
           {
             "label": "Mutton Half",
-            "price": "₹420"
+            "price": "₹440"
           },
           {
             "label": "Mutton Full",
@@ -3650,18 +3500,18 @@
           },
           {
             "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "mk_banajara",
         "name": "Banajara (SPL)",
-        "price": 220,
+        "price": 240,
         "quantityOptions": [
           {
             "label": "Chicken Bone Half",
-            "price": "₹220"
+            "price": "₹240"
           },
           {
             "label": "Chicken Bone Full",
@@ -3669,23 +3519,19 @@
           },
           {
             "label": "Chicken Boneless Half",
-            "price": "₹240"
+            "price": "₹260"
           },
           {
             "label": "Chicken Boneless Full",
-            "price": "₹370"
+            "price": "₹390"
           },
           {
             "label": "Veg",
-            "price": "₹180"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹200"
+            "price": "₹220"
           },
           {
             "label": "Mutton Half",
-            "price": "₹420"
+            "price": "₹440"
           },
           {
             "label": "Mutton Full",
@@ -3693,18 +3539,18 @@
           },
           {
             "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "mk_angara",
         "name": "Angara",
-        "price": 220,
+        "price": 240,
         "quantityOptions": [
           {
             "label": "Chicken Bone Half",
-            "price": "₹220"
+            "price": "₹240"
           },
           {
             "label": "Chicken Bone Full",
@@ -3712,23 +3558,19 @@
           },
           {
             "label": "Chicken Boneless Half",
-            "price": "₹240"
+            "price": "₹260"
           },
           {
             "label": "Chicken Boneless Full",
-            "price": "₹370"
+            "price": "₹390"
           },
           {
             "label": "Veg",
-            "price": "₹180"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹200"
+            "price": "₹220"
           },
           {
             "label": "Mutton Half",
-            "price": "₹420"
+            "price": "₹440"
           },
           {
             "label": "Mutton Full",
@@ -3736,18 +3578,18 @@
           },
           {
             "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "mk_lajawab",
         "name": "Lajawab",
-        "price": 220,
+        "price": 240,
         "quantityOptions": [
           {
             "label": "Chicken Bone Half",
-            "price": "₹220"
+            "price": "₹240"
           },
           {
             "label": "Chicken Bone Full",
@@ -3755,23 +3597,19 @@
           },
           {
             "label": "Chicken Boneless Half",
-            "price": "₹240"
+            "price": "₹260"
           },
           {
             "label": "Chicken Boneless Full",
-            "price": "₹370"
+            "price": "₹390"
           },
           {
             "label": "Veg",
-            "price": "₹180"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹200"
+            "price": "₹220"
           },
           {
             "label": "Mutton Half",
-            "price": "₹420"
+            "price": "₹440"
           },
           {
             "label": "Mutton Full",
@@ -3779,42 +3617,38 @@
           },
           {
             "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "mk_masala",
         "name": "Masala",
-        "price": 230,
+       "price": 250,
         "quantityOptions": [
           {
             "label": "Chicken Bone Half",
-            "price": "₹230"
+            "price": "₹250"
           },
           {
             "label": "Chicken Bone Full",
-            "price": "₹360"
+            "price": "₹390"
           },
           {
             "label": "Chicken Boneless Half",
-            "price": "₹270"
+            "price": "₹300"
           },
           {
             "label": "Chicken Boneless Full",
-            "price": "₹410"
+            "price": "₹450"
           },
           {
             "label": "Veg",
-            "price": "₹180"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹200"
+            "price": "₹220"
           },
           {
             "label": "Mutton Half",
-            "price": "₹420"
+            "price": "₹440"
           },
           {
             "label": "Mutton Full",
@@ -3822,34 +3656,26 @@
           },
           {
             "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "mk_tikka_masala",
         "name": "Tikka Masala",
-        "price": 230,
+        "price": 250,
         "quantityOptions": [
           {
             "label": "Chicken Bone Half",
-            "price": "₹230"
+            "price": "₹250"
           },
           {
             "label": "Chicken Bone Full",
-            "price": "₹360"
-          },
-          {
-            "label": "Chicken Boneless Half",
-            "price": "₹270"
-          },
-          {
-            "label": "Chicken Boneless Full",
-            "price": "₹410"
+            "price": "₹390"
           },
           {
             "label": "Mutton Half",
-            "price": "₹420"
+            "price": "₹440"
           },
           {
             "label": "Mutton Full",
@@ -3857,38 +3683,30 @@
           },
           {
             "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "mk_chingari",
         "name": "Chingari",
-        "price": 230,
+       "price": 250,
         "quantityOptions": [
           {
             "label": "Chicken Bone Half",
-            "price": "₹230"
+            "price": "₹250"
           },
           {
             "label": "Chicken Bone Full",
-            "price": "₹360"
+            "price": "₹390"
           },
           {
-            "label": "Chicken Boneless Half",
-            "price": "₹270"
-          },
-          {
-            "label": "Chicken Boneless Full",
-            "price": "₹410"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹350"
+            "label": "Veg",
+            "price": "₹370"
           },
           {
             "label": "Mutton Half",
-            "price": "₹420"
+            "price": "₹440"
           },
           {
             "label": "Mutton Full",
@@ -3896,80 +3714,76 @@
           },
           {
             "label": "Prawns",
-            "price": "₹450"
+            "price": "₹390"
           }
         ]
       },
       {
         "id": "mk_murg_musallam",
         "name": "Murg Musallam",
-        "price": 370,
+        "price": 390,
         "quantityOptions": [
           {
             "label": "Chicken Bone Half",
-            "price": "₹370"
+            "price": "₹390"
           },
           {
             "label": "Chicken Bone Full",
-            "price": "₹650"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹350"
+            "price": "₹670"
           },
           {
             "label": "Mutton Half",
-            "price": "₹420"
+            "price": "₹440"
           },
           {
             "label": "Mutton Full",
             "price": "₹790"
-          },
-          {
-            "label": "Prawns",
-            "price": "₹450"
           }
         ]
       },
       {
         "id": "mk_handi",
         "name": "Handi",
-        "price": 370,
+        "price": 390,
         "quantityOptions": [
           {
             "label": "Chicken Bone Half",
-            "price": "₹370"
+            "price": "₹390"
           },
           {
             "label": "Chicken Bone Full",
-            "price": "₹650"
+            "price": "₹670"
           },
           {
             "label": "Mutton Half",
-            "price": "₹420"
+            "price": "₹440"
           },
           {
             "label": "Mutton Full",
             "price": "₹790"
-          },
-          {
-            "label": "Prawns",
-            "price": "₹450"
           }
         ]
       },
       {
         "id": "mk_chicken_lababdar",
         "name": "Chicken Lababdar",
-        "price": 240,
+       "price": 260,
         "quantityOptions": [
           {
-            "label": "Chicken Half",
-            "price": "₹240"
+            "label": "Chicken Bone Half",
+            "price": "₹260"
           },
           {
-            "label": "Chicken Full",
-            "price": "₹400"
+            "label": "Chicken Bone Full",
+            "price": "₹420"
+          },
+          {
+            "label": "Mutton Half",
+            "price": "₹440"
+          },
+          {
+            "label": "Mutton Full",
+            "price": "₹790"
           }
         ]
       }
@@ -3981,298 +3795,276 @@
       {
         "id": "rice_steam",
         "name": "Steam",
-        "price": 0,
+        "price": 80,
         "quantityOptions": [
           {
-            "label": "Chicken Bone",
-            "price": "₹80/₹140"
+            "label": "Half",
+            "price": "₹80"
+          },
+          {
+            "label": "Full",
+            "price": "₹140"
           }
         ]
       },
       {
         "id": "rice_zeera",
         "name": "Zeera",
-        "price": 0,
+        "price": 80,
         "quantityOptions": [
+        {
+            "label": "Half",
+            "price": "₹80"
+          },
           {
-            "label": "Chicken Bone",
-            "price": "₹80/₹140"
+            "label": "Full",
+            "price": "₹140"
           }
         ]
       },
       {
         "id": "rice_egg",
-        "name": "Egg",
-        "price": 0,
+        "name": "Egg Rice",
+        "price": 80,
         "quantityOptions": [
+        {
+            "label": "Half",
+            "price": "₹80"
+          },
           {
-            "label": "Chicken Bone",
-            "price": "₹80/₹140"
+            "label": "Full",
+            "price": "₹140"
           }
         ]
       },
       {
         "id": "rice_fried",
-        "name": "Fried",
-        "price": 0,
+        "name": "Fried Rice",
+        "price": 120,
         "quantityOptions": [
-          {
-            "label": "Chicken Bone",
-            "price": "₹110/₹180"
+         {
+            "label": "Half Chicken",
+            "price": "₹120"
           },
           {
-            "label": "Veg",
-            "price": "₹80/₹140"
+            "label": "Full Chicken",
+            "price": "₹190"
           },
           {
-            "label": "Paneer",
-            "price": "₹100/₹170"
+            "label": "Half Veg",
+            "price": "₹100"
           },
           {
-            "label": "Prawns",
-            "price": "₹200"
+            "label": "Full Veg",
+            "price": "₹170"
           }
         ]
       },
       {
         "id": "rice_white_fried",
-        "name": "White Fried",
-        "price": 0,
+        "name": "White Fried Rice",
+        "price": 130,
         "quantityOptions": [
-          {
-            "label": "Chicken Bone",
-            "price": "₹110/₹180"
+        {
+            "label": "Half Chicken",
+            "price": "₹130"
           },
           {
-            "label": "Veg",
-            "price": "₹90/₹160"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹110/₹180"
-          },
-          {
-            "label": "Prawns",
+            "label": "Full Chicken",
             "price": "₹210"
+          },
+          {
+            "label": "Half Veg",
+            "price": "₹100"
+          },
+          {
+            "label": "Full Veg",
+            "price": "₹170"
           }
         ]
       },
       {
         "id": "rice_schezwan",
-        "name": "Schezwan",
-        "price": 0,
+        "name": "Schezwan FriedRice",
+        "price": 130,
         "quantityOptions": [
-          {
-            "label": "Chicken Bone",
-            "price": "₹120/₹190"
+        {
+            "label": "Half Chicken",
+            "price": "₹130"
           },
           {
-            "label": "Veg",
-            "price": "₹90/₹160"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹110/₹180"
-          },
-          {
-            "label": "Prawns",
+            "label": "Full Chicken",
             "price": "₹210"
+          },
+          {
+            "label": "Half Veg",
+            "price": "₹100"
+          },
+          {
+            "label": "Full Veg",
+            "price": "₹170"
           }
         ]
       },
       {
         "id": "rice_hong_kong",
-        "name": "Hong Kong",
-        "price": 0,
+        "name": "Hong Kong Rice",
+        "price": 130,
         "quantityOptions": [
-          {
-            "label": "Chicken Bone",
-            "price": "₹120/₹190"
+        {
+            "label": "Half Chicken",
+            "price": "₹130"
           },
           {
-            "label": "Veg",
-            "price": "₹100/₹170"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹120/₹200"
-          },
-          {
-            "label": "Prawns",
+            "label": "Full Chicken",
             "price": "₹210"
+          },
+          {
+            "label": "Half Veg",
+            "price": "₹100"
+          },
+          {
+            "label": "Full Veg",
+            "price": "₹180"
           }
         ]
       },
       {
         "id": "rice_garlic",
-        "name": "Garlic",
-        "price": 0,
+        "name": "Garlic FriedRice",
+        "price": 130,
         "quantityOptions": [
           {
-            "label": "Chicken Bone",
-            "price": "₹120/₹190"
+            "label": "Half Chicken",
+            "price": "₹130"
+          },
+          {
+            "label": "Full Chicken",
+            "price": "₹210"
           }
         ]
       },
       {
         "id": "rice_soldier",
         "name": "Soldier",
-        "price": 0,
+        "price": 130,
         "quantityOptions": [
           {
-            "label": "Chicken Bone",
-            "price": "₹120/₹190"
+            "label": "Half Chicken",
+            "price": "₹130"
+          },
+          {
+            "label": "Full Chicken",
+            "price": "₹210"
           }
         ]
       },
       {
         "id": "rice_combination",
-        "name": "Combination",
+        "name": "Combination Rice",
         "price": 0,
         "quantityOptions": [
           {
-            "label": "Chicken Bone",
-            "price": "₹110/₹180"
+            "label": "Chicken",
+            "price": "₹230"
           },
           {
             "label": "Veg",
-            "price": "₹100/₹170"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹120/₹200"
-          },
-          {
-            "label": "Prawns",
             "price": "₹220"
           }
         ]
       },
       {
         "id": "rice_singapore",
-        "name": "Singapore",
-        "price": 0,
+        "name": "Singapore Rice",
+        "price": 230,
         "quantityOptions": [
           {
-            "label": "Chicken Bone",
-            "price": "₹120/₹190"
+            "label": "Chicken",
+            "price": "₹230"
           },
           {
             "label": "Veg",
-            "price": "₹100/₹170"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹120/₹200"
-          },
-          {
-            "label": "Prawns",
             "price": "₹220"
           }
         ]
       },
       {
         "id": "rice_special",
-        "name": "Special",
-        "price": 0,
-        "quantityOptions": [
-          {
-            "label": "Chicken Bone",
-            "price": "₹120/₹190"
-          },
-          {
-            "label": "Veg",
-            "price": "₹190"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹240"
-          },
-          {
-            "label": "Prawns",
-            "price": "₹420"
-          }
-        ]
-      },
-      {
-        "id": "rice_chilli",
         "name": "Chilli Rice",
-        "price": 0,
+        "price": 250,
         "quantityOptions": [
           {
-            "label": "Chicken Bone",
-            "price": "₹310"
+            "label": "Chicken",
+            "price": "₹250"
           },
           {
             "label": "Veg",
-            "price": "₹190"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹240"
-          },
-          {
-            "label": "Prawns",
-            "price": "₹420"
+            "price": "₹220"
           }
         ]
       },
       {
         "id": "rice_manchurian",
-        "name": "Manchurian",
-        "price": 0,
+        "name": "Manchurian Rice",
+        "price": 270,
         "quantityOptions": [
           {
-            "label": "Chicken Bone",
-            "price": "₹310"
+            "label": "Chicken",
+            "price": "₹270"
           },
           {
             "label": "Veg",
-            "price": "₹190"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹240"
-          },
-          {
-            "label": "Prawns",
-            "price": "₹420"
+            "price": "₹220"
           }
         ]
       },
       {
         "id": "rice_tripple",
-        "name": "Tripple",
-        "price": 0,
+        "name": "Tripple Rice",
+        "price": 270,
         "quantityOptions": [
           {
-            "label": "Chicken Bone",
-            "price": "₹310"
+            "label": "Chicken",
+            "price": "₹270"
           },
           {
             "label": "Veg",
-            "price": "₹190"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹240"
-          },
-          {
-            "label": "Prawns",
-            "price": "₹420"
+            "price": "₹220"
           }
         ]
       },
       {
         "id": "rice_oriental_note",
-        "name": "Oriental Rice / Noodles (note)",
-        "price": 0,
+        "name": "Oriental Rice",
+        "price": 170,
         "quantityOptions": [
           {
             "label": "Chicken",
-            "price": "₹130/₹220"
+            "price": "₹170-₹290"
           }
         ]
+      },
+      {
+        "id": "rice_oriental_noodles",
+        "name": "Oriental Noodles",
+        "price": 170,
+        "quantityOptions": [
+          {
+            "label": "Chicken",
+            "price": "₹170-₹290"
+          }
+        ]
+      },
+      {
+        "id": "rice_dd_special",
+        "name": "DD Special Rice",
+        "price": 350
+      },
+      {
+        "id": "rice_chef_special",
+        "name": "Chef's Special Rice",
+        "price": 270
       }
     ]
   },
@@ -4290,11 +4082,7 @@
           },
           {
             "label": "Veg",
-            "price": "₹150"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹170"
+            "price": "₹210"
           },
           {
             "label": "Mutton",
@@ -4314,60 +4102,6 @@
       {
         "id": "noodles_chinese_bhel",
         "name": "Chinese Bhel",
-        "price": 100,
-        "quantityOptions": [
-          {
-            "label": "Chicken Half",
-            "price": "₹100"
-          },
-          {
-            "label": "Chicken Full",
-            "price": "₹180"
-          },
-          {
-            "label": "Veg Half",
-            "price": "₹80"
-          },
-          {
-            "label": "Veg Full",
-            "price": "₹150"
-          }
-        ]
-      },
-      {
-        "id": "noodles_hakka",
-        "name": "Hakka",
-        "price": 100,
-        "quantityOptions": [
-          {
-            "label": "Chicken Half",
-            "price": "₹100"
-          },
-          {
-            "label": "Chicken Full",
-            "price": "₹180"
-          },
-          {
-            "label": "Veg Half",
-            "price": "₹80"
-          },
-          {
-            "label": "Veg Full",
-            "price": "₹150"
-          },
-          {
-            "label": "Paneer Half",
-            "price": "₹100"
-          },
-          {
-            "label": "Paneer Full",
-            "price": "₹170"
-          }
-        ]
-      },
-      {
-        "id": "noodles_white",
-        "name": "White",
         "price": 110,
         "quantityOptions": [
           {
@@ -4376,23 +4110,38 @@
           },
           {
             "label": "Chicken Full",
-            "price": "₹190"
+            "price": "₹200"
           },
           {
             "label": "Veg Half",
-            "price": "₹90"
+            "price": "₹100"
           },
           {
             "label": "Veg Full",
-            "price": "₹160"
-          },
+            "price": "₹170"
+          }
+        ]
+      },
+      {
+        "id": "noodles_hakka",
+        "name": "Hakka",
+        "price": 110,
+        "quantityOptions": [
           {
-            "label": "Paneer Half",
+            "label": "Chicken Half",
             "price": "₹110"
           },
           {
-            "label": "Paneer Full",
-            "price": "₹180"
+            "label": "Chicken Full",
+            "price": "₹200"
+          },
+          {
+            "label": "Veg Half",
+            "price": "₹100"
+          },
+          {
+            "label": "Veg Full",
+            "price": "₹170"
           }
         ]
       },
@@ -4407,22 +4156,14 @@
           },
           {
             "label": "Chicken Full",
-            "price": "₹190"
+            "price": "₹200"
           },
           {
             "label": "Veg Half",
-            "price": "₹90"
-          },
-          {
-            "label": "Veg Full",
-            "price": "₹160"
-          },
-          {
-            "label": "Paneer Half",
             "price": "₹110"
           },
           {
-            "label": "Paneer Full",
+            "label": "Veg Full",
             "price": "₹180"
           }
         ]
@@ -4438,23 +4179,15 @@
           },
           {
             "label": "Chicken Full",
-            "price": "₹190"
+            "price": "₹200"
           },
           {
             "label": "Veg Half",
-            "price": "₹100"
+            "price": "₹110"
           },
           {
             "label": "Veg Full",
-            "price": "₹170"
-          },
-          {
-            "label": "Paneer Half",
-            "price": "₹120"
-          },
-          {
-            "label": "Paneer Full",
-            "price": "₹200"
+            "price": "₹180"
           }
         ]
       },
@@ -4469,23 +4202,15 @@
           },
           {
             "label": "Chicken Full",
-            "price": "₹190"
+            "price": "₹200"
           },
           {
             "label": "Veg Half",
-            "price": "₹100"
+            "price": "₹110"
           },
           {
             "label": "Veg Full",
-            "price": "₹170"
-          },
-          {
-            "label": "Paneer Half",
-            "price": "₹120"
-          },
-          {
-            "label": "Paneer Full",
-            "price": "₹200"
+            "price": "₹180"
           }
         ]
       },
@@ -4500,59 +4225,51 @@
           },
           {
             "label": "Chicken Full",
-            "price": "₹190"
+            "price": "₹200"
           }
         ]
       },
       {
         "id": "noodles_chilli1",
         "name": "Chilli Noodles",
-        "price": 310,
+        "price": 250,
         "quantityOptions": [
           {
             "label": "Chicken Bone",
-            "price": "₹310"
+            "price": "₹250"
           },
           {
             "label": "Veg",
-            "price": "₹190"
+            "price": "₹220"
           }
         ]
       },
       {
         "id": "noodles_tripple",
         "name": "Tripple",
-        "price": 310,
+        "price": 270,
         "quantityOptions": [
           {
             "label": "Chicken Bone",
-            "price": "₹310"
+            "price": "₹270"
           },
           {
             "label": "Veg",
-            "price": "₹220"
-          },
-          {
-            "label": "Paneer",
-            "price": "₹230"
+            "price": "₹240"
           }
         ]
       },
       {
         "id": "noodles_manchurian",
         "name": "Manchurian",
-        "price": 310,
+        "price": 270,
         "quantityOptions": [
           {
-            "label": "Chicken Bone",
-            "price": "₹310"
+            "label": "Chicken",
+            "price": "₹270"
           },
           {
             "label": "Veg",
-            "price": "₹220"
-          },
-          {
-            "label": "Paneer",
             "price": "₹230"
           }
         ]
@@ -4560,7 +4277,17 @@
       {
         "id": "noodles_american_choupsey",
         "name": "American Choupsey",
-        "price": 310
+        "price": 270,
+        "quantityOptions": [
+          {
+            "label": "Chicken Bone",
+            "price": "₹270"
+          },
+          {
+            "label": "Veg",
+            "price": "₹240"
+          }
+        ]
       }
     ]
   },
@@ -4657,14 +4384,14 @@
       {
         "id": "dal_fry",
         "name": "Dal Fry",
-        "price": 110,
+        "price": 130,
         "image": "",
         "tags": []
       },
       {
         "id": "dal_tadka",
         "name": "Dal Tadka",
-        "price": 130,
+        "price": 140,
         "image": "",
         "tags": []
       },
@@ -4672,13 +4399,6 @@
         "id": "dal_khichdi",
         "name": "Dal Khichdi",
         "price": 190,
-        "image": "",
-        "tags": []
-      },
-      {
-        "id": "dal_mutton_gosht",
-        "name": "Mutton Dal Gosht",
-        "price": 290,
         "image": "",
         "tags": []
       }
@@ -4697,21 +4417,14 @@
       {
         "id": "dess_caramel_custard",
         "name": "Caramel Custard",
-        "price": 100,
+        "price": 80,
         "image": "",
         "tags": []
       },
       {
         "id": "dess_sitafal_cream",
         "name": "Sitafal Cream",
-        "price": 130,
-        "image": "",
-        "tags": []
-      },
-      {
-        "id": "dess_dudhi_halwa",
-        "name": "Dudhi Halwa",
-        "price": 180,
+        "price": 100,
         "image": "",
         "tags": []
       }
@@ -7611,6 +7324,16 @@ const menuDataHiked = {
 
       // Initialize page based on URL
       function initializePage() {
+        // Check for hike parameter FIRST before clearing URL
+        const hasHike = window.location.pathname.includes("hike") || 
+                       window.location.search.includes("hike") || 
+                       window.location.hash.includes("hike");
+        
+        // Store hike state in sessionStorage so it persists
+        if (hasHike) {
+          sessionStorage.setItem("hikeMenu", "true");
+        }
+
         // Check URL for admin or delivery parameters (query params, hash, or pathname)
         const urlParams = new URLSearchParams(window.location.search);
         const isAdmin = window.location.pathname.includes("admin") || 
@@ -7753,7 +7476,7 @@ const menuDataHiked = {
                             </svg>
                             Bail Bazar, Kalyan
                         </div>
-                        <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" onclick="window.open('https://instagram.com', '_blank')">
+                        <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" onclick="window.open('https://www.instagram.com/dine___delight?igsh=MTY4dG5ydjZ2bWU3Mg==', '_blank')">
                             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                         </svg>
                     </div>
@@ -7796,7 +7519,7 @@ const menuDataHiked = {
                 </div>
 
                 <div class="cart-float" id="cartButton" onclick="openCart()">
-                    🍽️ Orders <span class="cart-badge" id="cartBadge">0</span>
+                    🍽️ Orders <span class="cart-badge" id="cartBadge" style="display:none;">0</span>
                 </div>
 
                 <div class="modal" id="cartModal">
@@ -7808,7 +7531,7 @@ const menuDataHiked = {
                         <div id="cartItems"></div>
                         <div class="cart-total" id="cartTotal">Total: ₹0</div>
                         ${orderType === "take-away" ? `
-                        <div class="customer-info-form" id="customerInfoForm">
+                        <!--<div class="customer-info-form" id="customerInfoForm">
                             <h3>Delivery Information</h3>
                             <div class="form-group">
                                 <label for="customerName">Name *</label>
@@ -7822,9 +7545,9 @@ const menuDataHiked = {
                                 <label for="customerAddress">Delivery Address *</label>
                                 <textarea id="customerAddress" placeholder="Enter your complete delivery address" required></textarea>
                             </div>
-                        </div>
+                        </div>-->
                         ` : ""}
-                        <button class="checkout-btn" onclick="placeOrder()">Place Order</button>
+                        <button class="checkout-btn"><a href="tel:+91-9152220234" style="color: white;text-decoration: none;"><i class="fa fa-phone"></i>&nbsp;Place Order</a></button>
                     </div>
                 </div>
             `;
@@ -7855,33 +7578,41 @@ const menuDataHiked = {
 
       function renderCategoryCards() {
         const cardsContainer = document.getElementById("categoryCards");
+        
+        // Check for hike to get correct menu data
+        var hike = window.location.pathname.includes("hike") || 
+                   window.location.search.includes("hike") || 
+                   window.location.hash.includes("hike") ||
+                   sessionStorage.getItem("hikeMenu") === "true";
+        const currentMenuData = hike ? menuDataHiked : menuData;
+        const categories = Object.keys(currentMenuData);
 
         // Main category cards to display (matching the image)
+        // Map to actual category keys in menuData
         const mainCategories = [
           {
-            id: "appetizers",
+            id: "chinese_starter", // First starter category
             title: "STARTERS",
             image:
               "https://images.unsplash.com/photo-1608039829572-78524f79c4c7?w=400&h=400&fit=crop",
             time: null,
           },
           {
-            id: "appetizers", // Using appetizers for salads (we can filter later)
+            id: "indian_starter", // Using indian_starter for salads/starters
             title: "SALADS",
             image:
               "https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400&h=400&fit=crop",
             time: null,
-            filter: "salad",
           },
           {
-            id: "mains",
+            id: "special_dishes_main_course", // Main course category
             title: "Main Course",
             image:
               "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=400&fit=crop",
             time: "11 AM - 9 PM",
           },
           {
-            id: "desserts",
+            id: "dessert", // Dessert category
             title: "DESSERTS",
             image:
               "https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=400&h=400&fit=crop",
@@ -7889,16 +7620,47 @@ const menuDataHiked = {
           },
         ];
 
-        mainCategories.forEach((cat, index) => {
+        mainCategories.forEach((cat) => {
+          // Check if category exists in menuData
+          if (!currentMenuData[cat.id]) {
+            // Try to find a similar category
+            const foundCategory = categories.find(c => 
+              c.toLowerCase().includes(cat.id.toLowerCase()) ||
+              cat.id.toLowerCase().includes(c.toLowerCase())
+            );
+            if (foundCategory) {
+              cat.id = foundCategory;
+            } else {
+              return; // Skip if category doesn't exist
+            }
+          }
+
           const card = document.createElement("div");
           card.className = "category-card";
           card.onclick = () => {
             const cards = document.getElementById("categoryCards");
             const sections = document.getElementById("categorySections");
-            const btn = document.querySelectorAll(".category-btn")[index];
             if (cards) cards.style.display = "none";
             if (sections) sections.style.display = "block";
-            if (btn) showCategory(cat.id, btn);
+            
+            // Find the corresponding category button by matching category ID
+            const categoryButtons = document.querySelectorAll(".category-btn");
+            const allCategories = Object.keys(currentMenuData);
+            let targetButton = null;
+            
+            // Find the button that corresponds to this category
+            // Skip Home button (index 0), so category buttons start at index 1
+            categoryButtons.forEach((btn, btnIndex) => {
+              if (btnIndex > 0) { // Skip Home button
+                const categoryIndex = btnIndex - 1;
+                if (allCategories[categoryIndex] === cat.id) {
+                  targetButton = btn;
+                }
+              }
+            });
+            
+            // Show the category - button is optional, just for active state styling
+            showCategory(cat.id, targetButton);
           };
 
           card.innerHTML = `
@@ -7924,32 +7686,99 @@ const menuDataHiked = {
         if (!contentContainer) return;
 
         var categories = Object.keys(menuData);
-        // Check for hike in pathname, search params, or hash
+        // Check for hike in pathname, search params, hash, or sessionStorage
         var hike = window.location.pathname.includes("hike") || 
                    window.location.search.includes("hike") || 
-                   window.location.hash.includes("hike");
+                   window.location.hash.includes("hike") ||
+                   sessionStorage.getItem("hikeMenu") === "true";
         if(hike)
           categories = Object.keys(menuDataHiked);
+
+        // Function to get category image based on category key
+        function getCategoryImage(categoryKey) {
+          const categoryLower = categoryKey.toLowerCase();
+          const imageMap = {
+            "soups": "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&h=400&fit=crop",
+            "tandoori_chicken": "https://www.google.com/imgres?q=chicken%20tandoori&imgurl=https%3A%2F%2Fwww.licious.in%2Fblog%2Fwp-content%2Fuploads%2F2020%2F12%2FTandoori-Chicken-600x600.jpg&imgrefurl=https%3A%2F%2Fwww.licious.in%2Fblog%2Frecipe%2Fno-oven-no-tandoor-tandoori-chicken-recipe%3Fsrsltid%3DAfmBOopsvfXidO7UY3m18d7uvjdG03FpvlT0-BmKNgc-6K5yW19-yWnT&docid=RgNd4D2FCokt7M&tbnid=QS0qCU92bL9J7M&vet=12ahUKEwiWy5i_qPeQAxVyna8BHeP2IyEQM3oECBIQAA..i&w=600&h=600&hcb=2&ved=2ahUKEwiWy5i_qPeQAxVyna8BHeP2IyEQM3oECBIQAA",
+            "special_kabab": "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=400&h=400&fit=crop",
+            "chinese_starter": "https://images.unsplash.com/photo-1608039829572-78524f79c4c7?w=400&h=400&fit=crop",
+            "indian_starter": "https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400&h=400&fit=crop",
+            "special_dishes_main_course": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=400&fit=crop",
+            "mughlai_khazana": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&h=400&fit=crop",
+            "rice": "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?w=400&h=400&fit=crop",
+            "biryani": "https://images.unsplash.com/photo-1599043513900-ed6fe01d3833?w=400&h=400&fit=crop",
+            "noodles": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&h=400&fit=crop",
+            "time_pass": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=400&fit=crop",
+            "roti": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=400&fit=crop",
+            "dal": "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&h=400&fit=crop",
+            "dessert": "https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=400&h=400&fit=crop"
+          };
+          
+          // Try exact match first
+          if (imageMap[categoryKey]) {
+            return imageMap[categoryKey];
+          }
+          
+          // Try partial match
+          for (const [key, image] of Object.entries(imageMap)) {
+            if (categoryLower.includes(key) || key.includes(categoryLower)) {
+              return image;
+            }
+          }
+          
+          // Default food image
+          return "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=400&fit=crop";
+        }
 
         // Add Home tab first
         const homeBtn = document.createElement("button");
         homeBtn.className = "category-btn active";
-        homeBtn.textContent = "Home";
+        const homeIcon = document.createElement("div");
+        homeIcon.className = "category-btn-icon";
+        const homeImg = document.createElement("img");
+        homeImg.src = "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=400&h=400&fit=crop";
+        homeImg.alt = "Home";
+        homeImg.onerror = function() {
+          this.src = "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=400&fit=crop";
+        };
+        homeIcon.appendChild(homeImg);
+        const homeLabel = document.createElement("div");
+        homeLabel.className = "category-btn-label";
+        homeLabel.textContent = "Home";
+        homeBtn.appendChild(homeIcon);
+        homeBtn.appendChild(homeLabel);
         homeBtn.onclick = (e) => {
-          showHome(e.target);
+          showHome(e.target.closest(".category-btn"));
         };
         navContainer.appendChild(homeBtn);
 
         categories.forEach((category, index) => {
           const btn = document.createElement("button");
           btn.className = "category-btn";
-          btn.textContent = hike ? menuDataHiked[category].title : menuData[category].title;
+          
+          const icon = document.createElement("div");
+          icon.className = "category-btn-icon";
+          const img = document.createElement("img");
+          img.src = img.src == "" ? getCategoryImage(category) : img.src;
+          img.alt = hike ? menuDataHiked[category].title : menuData[category].title;
+          img.onerror = function() {
+            this.src = "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=400&fit=crop";
+          };
+          icon.appendChild(img);
+          
+          const label = document.createElement("div");
+          label.className = "category-btn-label";
+          label.textContent = hike ? menuDataHiked[category].title : menuData[category].title;
+          
+          btn.appendChild(icon);
+          btn.appendChild(label);
+          
           btn.onclick = (e) => {
             const cards = document.getElementById("categoryCards");
             const sections = document.getElementById("categorySections");
             if (cards) cards.style.display = "none";
             if (sections) sections.style.display = "block";
-            showCategory(category, e.target);
+            showCategory(category, e.target.closest(".category-btn"));
           };
           navContainer.appendChild(btn);
         });
@@ -8258,7 +8087,7 @@ const menuDataHiked = {
 
         const img = document.createElement("img");
         img.className = "item-image";
-        img.src = getImageUrl(item, category);
+        img.src = img.src == "" ? getImageUrl(item, category) : img.src;
         img.alt = item.name;
         img.loading = "lazy";
         img.onerror = function() {
@@ -8687,10 +8516,11 @@ const menuDataHiked = {
         // Find featured items from menuData
         const featuredItems = [];
         
-        // Check for hike in pathname, search params, or hash
+        // Check for hike in pathname, search params, hash, or sessionStorage
         var hike = window.location.pathname.includes("hike") || 
                    window.location.search.includes("hike") || 
-                   window.location.hash.includes("hike");
+                   window.location.hash.includes("hike") ||
+                   sessionStorage.getItem("hikeMenu") === "true";
         const currentMenuData = hike ? menuDataHiked : menuData;
 
         if (!currentMenuData) return;
@@ -8773,7 +8603,7 @@ const menuDataHiked = {
                 <div class="featured-item-name">${item.name}</div>
                 <div class="featured-item-description">${description}</div>
                 <div class="featured-item-price">${priceDisplay}</div>
-                <button class="featured-item-btn" onclick="event.stopPropagation(); addFeaturedToCart('${item.id}', '${item.category}')">Add to Order</button>
+                <button class="featured-item-btn" onclick="event.stopPropagation(); scrollToMenuItem('${item.id}', '${item.category}')">View More</button>
               </div>
             </div>
           `;
@@ -8860,10 +8690,11 @@ const menuDataHiked = {
       }
 
       function addFeaturedToCart(itemId, category) {
-        // Check for hike in pathname, search params, or hash
+        // Check for hike in pathname, search params, hash, or sessionStorage
         var hike = window.location.pathname.includes("hike") || 
                    window.location.search.includes("hike") || 
-                   window.location.hash.includes("hike");
+                   window.location.hash.includes("hike") ||
+                   sessionStorage.getItem("hikeMenu") === "true";
         const currentMenuData = hike ? menuDataHiked : menuData;
 
         if (!currentMenuData) return;
@@ -9007,6 +8838,8 @@ const menuDataHiked = {
           );
           const badge = document.getElementById("cartBadge");
           if (badge) {
+            if(totalItems != 0)
+              badge.style.display = "inline-block";
             badge.textContent = totalItems;
           }
         } catch (error) {
@@ -9108,44 +8941,44 @@ const menuDataHiked = {
         }
 
         // For take-away orders, validate customer info
-        if (orderType === "take-away") {
-          const name = document.getElementById("customerName")?.value.trim();
-          const contact = document.getElementById("customerContact")?.value.trim();
-          const address = document.getElementById("customerAddress")?.value.trim();
+        // if (orderType === "take-away") {
+        //   const name = document.getElementById("customerName")?.value.trim();
+        //   const contact = document.getElementById("customerContact")?.value.trim();
+        //   const address = document.getElementById("customerAddress")?.value.trim();
 
-          if (!name || !contact || !address) {
-            alert("Please fill in all delivery information fields!");
-            return;
-          }
+        //   if (!name || !contact || !address) {
+        //     alert("Please fill in all delivery information fields!");
+        //     return;
+        //   }
 
-          // Validate contact number (basic validation)
-          if (contact.length < 10) {
-            alert("Please enter a valid contact number!");
-            return;
-          }
+        //   // Validate contact number (basic validation)
+        //   if (contact.length < 10) {
+        //     alert("Please enter a valid contact number!");
+        //     return;
+        //   }
 
-          customerInfo = { name, contact, address };
-        }
+        //   customerInfo = { name, contact, address };
+        // }
 
-        const order = {
-          orderType: orderType || "dine-in",
-          tableNumber: orderType === "dine-in" ? tableNumber : null,
-          customerInfo: orderType === "take-away" ? customerInfo : null,
-          items: Object.values(cart).filter((item) => item.quantity > 0),
-          total: Object.values(cart).reduce(
-            (sum, item) => sum + item.price * item.quantity,
-            0
-          ),
-          timestamp: new Date().toISOString(),
-          status: "pending",
-        };
+        // const order = {
+        //   orderType: orderType || "dine-in",
+        //   tableNumber: orderType === "dine-in" ? tableNumber : null,
+        //   customerInfo: orderType === "take-away" ? customerInfo : null,
+        //   items: Object.values(cart).filter((item) => item.quantity > 0),
+        //   total: Object.values(cart).reduce(
+        //     (sum, item) => sum + item.price * item.quantity,
+        //     0
+        //   ),
+        //   timestamp: new Date().toISOString(),
+        //   status: "pending",
+        // };
 
-        const orderId = saveOrder(order);
+        // const orderId = saveOrder(order);
 
-        alert(`Order placed successfully! Order ID: ${orderId.split("_")[1]}`);
-        cart = {};
-        customerInfo = null;
-        updateCartDisplay();
+        // alert(`Order placed successfully! Order ID: ${orderId.split("_")[1]}`);
+        // cart = {};
+        // customerInfo = null;
+        // updateCartDisplay();
         closeCart();
       }
 
@@ -9225,7 +9058,7 @@ const menuDataHiked = {
         app.innerHTML = `
                 <div class="delivery-container">
                     <div class="delivery-header">
-                        <h1>🚚 Dine Delight Delivery Partner Dashboard</h1>
+                        <h1>🛵 Dine Delight Delivery Partner Dashboard</h1>
                         <p>Manage take-away orders and deliveries</p>
                         <div style="margin-top: 15px;">
                             <a href="?" style="color: white; text-decoration: underline; margin-right: 20px; display: inline-block;">← Back to Menu</a>
@@ -9428,7 +9261,7 @@ const menuDataHiked = {
           });
 
           const orderTypeTag = order.orderType === "take-away" 
-            ? '<span class="order-type-tag order-type-takeaway">🚚 Take-Away</span>'
+            ? '<span class="order-type-tag order-type-takeaway">🛵 Take-Away</span>'
             : '<span class="order-type-tag order-type-dinein">🍽️ Dine-In</span>';
           
           const orderTitle = order.orderType === "take-away" 
